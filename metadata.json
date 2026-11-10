@@ -1,0 +1,6 @@
+{
+  "name": "Lumina Analytics",
+  "description": "Executive and operational e-commerce intelligence platform with high-precision KPI tracking, revenue trends, inventory alerts, and real-time transaction monitoring.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

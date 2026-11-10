@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <script>
+      (function() {
+        try {
+          var origFetch = window.fetch;
+          var activeFetch = origFetch ? function() {
+            return origFetch.apply(window, arguments);
+          } : undefined;
+
+          // Define getter and setter on window to prevent "Cannot set property fetch which has only a getter"
+          try {
+            Object.defineProperty(window, 'fetch', {
+              get: function() {
+                return activeFetch;
+              },
+              set: function(fn) {
+                activeFetch = fn;
+              },
+              configurable: true,
+              enumerable: true
+            });
+          } catch (e1) {
+            try {
+              var proto = Object.getPrototypeOf(window);
+              if (proto) {
+                Object.defineProperty(proto, 'fetch', {
+                  get: function() {
+                    return activeFetch;
+                  },
+                  set: function(fn) {
+                    activeFetch = fn;
+                  },
+                  configurable: true,
+                  enumerable: true
+                });
+              }
+            } catch (e2) {}
+          }
+        } catch (err) {}
+      })();
+    </script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lumina Analytics — Executive E-Commerce Intelligence</title>
+    <meta name="description" content="Executive and operational e-commerce intelligence platform with high-precision KPI tracking, revenue trends, inventory alerts, and real-time transaction monitoring." />
+    <meta property="og:title" content="Lumina Analytics — Executive E-Commerce Intelligence" />
+    <meta property="og:description" content="Executive and operational e-commerce intelligence platform with high-precision KPI tracking, revenue trends, inventory alerts, and real-time transaction monitoring." />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-[#F8F9FA] text-[#0F172A] antialiased selection:bg-[#4F46E5] selection:text-white">
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
+
